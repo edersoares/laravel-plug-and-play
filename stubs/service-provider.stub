@@ -1,0 +1,16 @@
+<?php
+
+namespace {{ $namespace }};
+
+use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
+
+class ServiceProvider extends LaravelServiceProvider
+{
+    /**
+     * @return void
+     */
+    public function boot()
+    {
+
+    }
+}

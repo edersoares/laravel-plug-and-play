@@ -1,0 +1,15 @@
+{
+    "name": "{{ $projectName }}",
+    "autoload": {
+        "psr-4": {
+            "{{ $composerNamespace }}\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "{{ $composerNamespace }}\\ServiceProvider"
+            ]
+        }
+    }
+}
