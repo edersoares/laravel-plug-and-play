@@ -7,7 +7,7 @@ use EderSoares\Laravel\PlugAndPlay\Commands\PackageCreateCommand;
 use EderSoares\Laravel\PlugAndPlay\Commands\PackageInstallCommand;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
-class ServiceProvider extends LaravelServiceProvider
+class PlugAndPlayServiceProvider extends LaravelServiceProvider
 {
     /**
      * @return void
