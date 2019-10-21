@@ -13,7 +13,7 @@ class PackageInstallCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'package:install';
+    protected $signature = 'package:install {--no-composer}';
 
     /**
      * The console command description.
@@ -40,6 +40,34 @@ class PackageInstallCommand extends GeneratorCommand
     }
 
     /**
+     * Add merge-plugin config in composer.json.
+     *
+     * @throws FileNotFoundException
+     *
+     * @return void
+     */
+    protected function modifyComposerJson()
+    {
+        $composerFilename = base_path('composer.json');
+
+        $composer = json_decode(
+            $this->files->get($composerFilename),
+            true
+        );
+
+        $composer['extra']['merge-plugin'] = [
+            'include' => [
+                'packages/*/*/composer.json',
+            ],
+        ];
+
+        $this->files->put(
+            $composerFilename,
+            json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+        );
+    }
+
+    /**
      * Execute the console command.
      *
      * @throws FileNotFoundException
@@ -49,6 +77,7 @@ class PackageInstallCommand extends GeneratorCommand
     public function handle()
     {
         $this->addArgument('name', InputArgument::OPTIONAL, '', 'Extensions\\Application');
+        $updateComposerJson = empty($this->option('no-composer'));
 
         $result = parent::handle();
 
@@ -66,6 +95,10 @@ class PackageInstallCommand extends GeneratorCommand
         $this->files->makeDirectory(base_path('packages'));
         $this->files->put($filename, $file);
         $this->files->put($gitignoreFilename, $gitignore);
+
+        if ($updateComposerJson) {
+            $this->modifyComposerJson();
+        }
 
         return $result;
     }
