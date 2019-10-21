@@ -7,7 +7,7 @@ use Illuminate\Foundation\PackageManifest;
 class CustomPackageManifest extends PackageManifest
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function build()
     {

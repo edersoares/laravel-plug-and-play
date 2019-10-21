@@ -28,9 +28,9 @@ class PackageCreateCommand extends Command
      *
      * @param Filesystem $filesystem
      *
-     * @return void
-     *
      * @throws FileNotFoundException
+     *
+     * @return void
      */
     public function handle(Filesystem $filesystem)
     {
