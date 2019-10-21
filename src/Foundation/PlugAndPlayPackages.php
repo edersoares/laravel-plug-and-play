@@ -3,12 +3,18 @@
 namespace EderSoares\Laravel\PlugAndPlay\Foundation;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\PackageManifest;
 
 trait PlugAndPlayPackages
 {
     /**
-     * {@inheritdoc}
+     * Register the basic bindings into the container. Replace the
+     * PackageManifest binding.
+     *
+     * @see Application::registerBaseBindings()
+     *
+     * @return void
      */
     protected function registerBaseBindings()
     {

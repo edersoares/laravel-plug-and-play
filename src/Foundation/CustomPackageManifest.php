@@ -2,12 +2,18 @@
 
 namespace EderSoares\Laravel\PlugAndPlay\Foundation;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Foundation\PackageManifest;
 
 class CustomPackageManifest extends PackageManifest
 {
     /**
-     * {@inheritdoc}
+     * Build the manifest and write it to disk. Read and write plug and play
+     * packages.
+     *
+     * @throws FileNotFoundException
+     *
+     * @return void
      */
     public function build()
     {

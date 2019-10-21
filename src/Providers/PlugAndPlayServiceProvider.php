@@ -10,6 +10,8 @@ use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 class PlugAndPlayServiceProvider extends LaravelServiceProvider
 {
     /**
+     * Boot the provider and register commands.
+     *
      * @return void
      */
     public function boot()
