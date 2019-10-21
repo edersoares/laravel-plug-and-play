@@ -42,9 +42,9 @@ class PackageInstallCommand extends GeneratorCommand
     /**
      * Execute the console command.
      *
-     * @return null|bool
-     *
      * @throws FileNotFoundException
+     *
+     * @return null|bool
      */
     public function handle()
     {

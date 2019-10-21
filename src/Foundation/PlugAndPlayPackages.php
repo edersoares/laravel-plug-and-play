@@ -8,14 +8,14 @@ use Illuminate\Foundation\PackageManifest;
 trait PlugAndPlayPackages
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function registerBaseBindings()
     {
         parent::registerBaseBindings();
 
         $this->instance(PackageManifest::class, new CustomPackageManifest(
-            new Filesystem,
+            new Filesystem(),
             $this->basePath(),
             $this->getCachedPackagesPath()
         ));
