@@ -40,6 +40,60 @@ class PackageInstallCommand extends GeneratorCommand
     }
 
     /**
+     * Modify Application class in bootstrap/app.php.
+     *
+     * @throws FileNotFoundException
+     *
+     * @return void
+     */
+    protected function modifyBootstrapAppFile()
+    {
+        $filename = base_path('bootstrap/app.php');
+
+        $file = str_replace(
+            'Illuminate\Foundation\Application',
+            $this->qualifyClass($this->argument('name')),
+            $this->files->get($filename)
+        );
+
+        $this->files->put($filename, $file);
+    }
+
+    /**
+     * Create packages directory if not exists.
+     *
+     * @return void
+     */
+    protected function createPackagesDirectory()
+    {
+        $packages = base_path('packages');
+
+        if ($this->files->exists($packages)) {
+            return;
+        }
+
+        $this->files->makeDirectory(base_path('packages'));
+    }
+
+    /**
+     * Create packages/.gitignore file if not exists.
+     *
+     * @return void
+     */
+    protected function createGitIgnoreFile()
+    {
+        $filename = base_path('packages/.gitignore');
+
+        if ($this->files->exists($filename)) {
+            return;
+        }
+
+        $content = implode("\n", ['*', '!.gitignore']);
+
+        $this->files->put($filename, $content);
+    }
+
+    /**
      * Add merge-plugin config in composer.json.
      *
      * @throws FileNotFoundException
@@ -77,26 +131,14 @@ class PackageInstallCommand extends GeneratorCommand
     public function handle()
     {
         $this->addArgument('name', InputArgument::OPTIONAL, '', 'Extensions\\Application');
-        $updateComposerJson = empty($this->option('no-composer'));
 
         $result = parent::handle();
 
-        $filename = base_path('bootstrap/app.php');
-        $gitignoreFilename = base_path('packages/.gitignore');
+        $this->modifyBootstrapAppFile();
+        $this->createPackagesDirectory();
+        $this->createGitIgnoreFile();
 
-        $file = str_replace(
-            'Illuminate\Foundation\Application',
-            $this->qualifyClass($this->argument('name')),
-            $this->files->get($filename)
-        );
-
-        $gitignore = implode("\n", ['*', '!.gitignore']);
-
-        $this->files->makeDirectory(base_path('packages'));
-        $this->files->put($filename, $file);
-        $this->files->put($gitignoreFilename, $gitignore);
-
-        if ($updateComposerJson) {
+        if (empty($this->option('no-composer'))) {
             $this->modifyComposerJson();
         }
 
