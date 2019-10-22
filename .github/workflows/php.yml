@@ -1,0 +1,27 @@
+name: PHP Composer
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Clone https://github.com/edersoares/laravel-plug-and-play-tests.git
+      run: |
+        git clone https://github.com/edersoares/laravel-plug-and-play-tests.git
+        cd laravel-plug-and-play-tests
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+      
+    - name: Install plug and play package
+      run: |
+        php artisan package:install
+        composer update --lock
+
+    - name: Execute tests
+      run: vendor/bin/phpunit
