@@ -25,9 +25,6 @@
         }
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "master"
-        },
         "class": "Wikimedia\\Composer\\MergePlugin",
         "laravel": {
             "providers": [
