@@ -11,17 +11,22 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Clone https://github.com/edersoares/laravel-plug-and-play-tests.git
-      run: |
-        git clone https://github.com/edersoares/laravel-plug-and-play-tests.git
-        cd laravel-plug-and-play-tests
+      working-directory: laravel-plug-and-play-tests
+      run: git clone https://github.com/edersoares/laravel-plug-and-play-tests.git
+        
 
     - name: Install dependencies
+      working-directory: laravel-plug-and-play-tests
       run: composer install --prefer-dist --no-progress --no-suggest
       
     - name: Install plug and play package
-      run: |
-        php artisan package:install
-        composer update --lock
+      working-directory: laravel-plug-and-play-tests
+      run: php artisan package:install
+      
+    - name: Update dependencies
+      working-directory: laravel-plug-and-play-tests
+      run: composer update --lock
 
     - name: Execute tests
+      working-directory: laravel-plug-and-play-tests
       run: vendor/bin/phpunit
