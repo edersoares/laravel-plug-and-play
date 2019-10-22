@@ -1,0 +1,16 @@
+language: php
+
+git:
+  clone: false
+
+cache: false
+
+before_script:
+  - git clone https://github.com/edersoares/laravel-plug-and-play-tests.git
+  - cd laravel-plug-and-play-tests
+  - composer update
+  - php artisan package:install
+  - composer update --lock
+
+script:
+  - vendor/bin/phpunit
