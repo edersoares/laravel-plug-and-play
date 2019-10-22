@@ -21,7 +21,7 @@ The `composer.json` file needs to be updated to something like:
 ```json
 {
     "require": {
-        "edersoares/laravel-plug-and-play": "dev-master"
+        "edersoares/laravel-plug-and-play": "^1.0"
     },
     "extra": {
         "merge-plugin": {
