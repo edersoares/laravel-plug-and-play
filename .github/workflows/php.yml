@@ -19,10 +19,9 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
       
     - name: Install plug and play package
-      run: php artisan package:install
-      
-    - name: Update dependencies
-      run: composer update --lock
+      run: |
+        php artisan package:install
+        composer update --lock
 
     - name: Execute tests
       run: vendor/bin/phpunit
