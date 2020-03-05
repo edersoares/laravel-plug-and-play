@@ -64,7 +64,8 @@ packages
 \_ <vendor>
   \_ <name>
     \_ src
-      \_ ServiceProvider.php
+      \_ Providers
+        \_ ServiceProvider.php
     \_ composer.json
 ``` 
 
