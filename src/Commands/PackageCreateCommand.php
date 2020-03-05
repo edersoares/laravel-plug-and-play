@@ -59,13 +59,13 @@ class PackageCreateCommand extends Command
         $provider = str_replace($from, $to, $provider);
 
         $path = base_path("packages/{$name}");
-        $srcPath = base_path("packages/{$name}/src");
+        $srcPath = base_path("packages/{$name}/src/Providers");
 
         $filesystem->makeDirectory($path, 0755, true);
         $filesystem->makeDirectory($srcPath, 0755, true);
 
         $filesystem->put("$path/composer.json", $composer);
-        $filesystem->put("$path/src/ServiceProvider.php", $provider);
+        $filesystem->put("$path/src/Providers/ServiceProvider.php", $provider);
 
         $this->line("Project created in: <info>{$path}</info>");
     }
