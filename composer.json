@@ -1,6 +1,5 @@
 {
     "name": "edersoares/laravel-plug-and-play",
-    "version": "1.0.0",
     "description": "Plug and play packages in Laravel",
     "type": "composer-plugin",
     "license": "MIT",
