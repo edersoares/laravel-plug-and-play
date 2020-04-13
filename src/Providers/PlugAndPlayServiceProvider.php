@@ -1,6 +1,6 @@
 <?php
 
-namespace EderSoares\Laravel\PlugAndPlay;
+namespace EderSoares\Laravel\PlugAndPlay\Providers;
 
 use EderSoares\Laravel\PlugAndPlay\Commands\PackageClearCommand;
 use EderSoares\Laravel\PlugAndPlay\Commands\PackageCreateCommand;

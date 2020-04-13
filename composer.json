@@ -27,7 +27,7 @@
         "class": "Wikimedia\\Composer\\MergePlugin",
         "laravel": {
             "providers": [
-                "EderSoares\\Laravel\\PlugAndPlay\\PlugAndPlayServiceProvider"
+                "EderSoares\\Laravel\\PlugAndPlay\\Providers\\PlugAndPlayServiceProvider"
             ]
         }
     },
